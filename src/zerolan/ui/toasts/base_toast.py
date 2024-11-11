@@ -1,4 +1,4 @@
-from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QPoint, pyqtSignal
+from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QPoint
 from PyQt6.QtGui import QPainter, QColor, QFont, QPalette, QPen
 from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout, QSizePolicy
 
@@ -20,20 +20,20 @@ class QtBaseToast(QWidget, FadeoutAnimation):
         super().__init__()
 
         self._theme = theme if theme is not None else DefaultToastTheme()
-        self.setWindowFlags(Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
-        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.WindowStaysOnTopHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
         self.layout = QVBoxLayout()
         self.label = QLabel(message)
         self.label.setWordWrap(True)
         self.label.setFixedWidth(720)
-        self.label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding)
+        self.label.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Expanding)
         self.layout.addWidget(self.label)
         self.setLayout(self.layout)
 
         # Text color
         palette = self.label.palette()
-        palette.setColor(QPalette.WindowText, QColor(self._theme.font_color))
+        palette.setColor(QPalette.ColorRole.WindowText, QColor(self._theme.font_color))
         self.label.setPalette(palette)
 
         # Font
@@ -67,7 +67,7 @@ class QtBaseToast(QWidget, FadeoutAnimation):
 
     def paintEvent(self, event):
         painter = QPainter(self)
-        painter.setRenderHint(QPainter.Antialiasing)  # Anti-aliasing
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)  # Anti-aliasing
 
         # Draw a rounded rectangle filled with color
         painter.setBrush(QColor(self._theme.bg_color))
@@ -77,9 +77,9 @@ class QtBaseToast(QWidget, FadeoutAnimation):
             QPen(
                 QColor(self._theme.border_color),
                 self.BORDER_WIDTH,
-                Qt.SolidLine,
-                Qt.RoundCap,
-                Qt.RoundJoin,
+                Qt.PenStyle.SolidLine,
+                Qt.PenCapStyle.RoundCap,
+                Qt.PenJoinStyle.RoundJoin,
             )
         )
 
