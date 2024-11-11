@@ -6,6 +6,7 @@ from dataclasses_json import dataclass_json
 from flask import Flask, request, jsonify
 from loguru import logger
 
+from zerolan.ui.common.utils import get_center_point
 from zerolan.ui.subtitle import QTSubtitle
 from zerolan.ui.themes.modern import toast_theme
 from zerolan.ui.toasts.base_toast import QtBaseToast
@@ -27,16 +28,17 @@ def log(toast_entity: ToastEntity):
     logger_func = logger_level_dict.get(toast_entity.level, logger.info)
     logger_func(toast_entity.message)
 
-
 @flask_app.route('/toast', methods=['POST'])
 def show_toast():
     toast_entity: ToastEntity = ToastEntity.from_dict(request.json)  # type: ignore
     log(toast_entity)
 
     qt_app = QApplication([])
+
+
     toast = QtBaseToast(message=toast_entity.message,
                         duration=toast_entity.duration,
-                        screen_center=qt_app.desktop().screen().geometry().center(),
+                        screen_center=get_center_point(qt_app),
                         theme=toast_theme.get(toast_entity.level, None))
     toast_entities[toast_entity.id] = QtAppWrapper(qt_app=qt_app, toast=toast)
     toast.show()
@@ -54,7 +56,7 @@ def show_progress_toast():
     qt_app = QApplication([])
     toast = QtProgressToast(message=progress_toast_entity.message,
                             duration=progress_toast_entity.duration,
-                            screen_center=qt_app.desktop().screen().geometry().center(),
+                            screen_center=get_center_point(qt_app),
                             theme=toast_theme.get(progress_toast_entity.level, None),
                             is_busy=progress_toast_entity.busy,
                             max_value=progress_toast_entity.max_value, )
@@ -109,7 +111,7 @@ def show_subtitle():
     qt_app = QApplication([])
     subtitle = QTSubtitle(content=subtitle_entity.content,
                           duration=subtitle_entity.duration,
-                          screen_center=qt_app.desktop().screen().geometry().center(), )
+                          screen_center=get_center_point(qt_app))
     subtitle.show()
     qt_app.exec()
     qt_app.exit()
