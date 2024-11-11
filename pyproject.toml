@@ -8,6 +8,11 @@ packages = [{include = "zerolan", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+pyqt6 = "^6.7.1"
+dataclasses-json = "^0.6.7"
+flask = "^3.0.3"
+requests = "^2.32.3"
+loguru = "^0.7.2"
 
 
 [build-system]
