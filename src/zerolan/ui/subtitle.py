@@ -2,7 +2,7 @@ from PyQt6.QtCore import Qt, QTimer, QPoint
 from PyQt6.QtGui import QPalette, QColor, QFont
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QSizePolicy
 
-from animations.fadeout import FadeoutAnimation
+from zerolan.ui.animations.fadeout import FadeoutAnimation
 
 
 class QTSubtitle(QWidget, FadeoutAnimation):

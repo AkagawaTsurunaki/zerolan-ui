@@ -6,11 +6,11 @@ from dataclasses_json import dataclass_json
 from flask import Flask, request, jsonify
 from loguru import logger
 
-from subtitle import QTSubtitle
-from themes.modern import toast_theme
-from toasts.base_toast import QtBaseToast
-from toasts.progress_toast import QtProgressToast
-from web.entities import ToastEntity, ProgressToastEntity, QtAppWrapper
+from zerolan.ui.subtitle import QTSubtitle
+from zerolan.ui.themes.modern import toast_theme
+from zerolan.ui.toasts.base_toast import QtBaseToast
+from zerolan.ui.toasts.progress_toast import QtProgressToast
+from zerolan.ui.web.entities import ToastEntity, ProgressToastEntity, QtAppWrapper
 
 flask_app = Flask(__name__)
 

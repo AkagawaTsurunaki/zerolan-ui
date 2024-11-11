@@ -1,5 +1,5 @@
-from themes.modern import DefaultToastTheme
-from toasts.base_toast import QtBaseToast
+from zerolan.ui.themes.modern import DefaultToastTheme
+from zerolan.ui.toasts.base_toast import QtBaseToast
 
 from PyQt6.QtCore import QPoint, QTimer, pyqtSignal
 from PyQt6.QtWidgets import QApplication, QProgressBar

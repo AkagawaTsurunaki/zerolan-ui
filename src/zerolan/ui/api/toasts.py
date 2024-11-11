@@ -3,8 +3,8 @@ from typing import Literal
 
 import requests
 
-from common.decorators import multithread
-from web.entities import ToastEntity, ProgressToastEntity
+from zerolan.ui.common.decorators import multithread
+from zerolan.ui.web.entities import ToastEntity, ProgressToastEntity
 
 
 class Toast:

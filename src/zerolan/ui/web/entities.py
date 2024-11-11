@@ -4,8 +4,8 @@ from typing import Literal
 from PyQt6.QtWidgets import QApplication
 from dataclasses_json import dataclass_json
 
-from toasts.base_toast import QtBaseToast
-from toasts.progress_toast import QtProgressToast
+from zerolan.ui.toasts.base_toast import QtBaseToast
+from zerolan.ui.toasts.progress_toast import QtProgressToast
 
 
 @dataclass_json

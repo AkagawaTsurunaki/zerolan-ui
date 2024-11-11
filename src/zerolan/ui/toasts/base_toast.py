@@ -2,8 +2,8 @@ from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QPoint, pyqtSignal
 from PyQt6.QtGui import QPainter, QColor, QFont, QPalette, QPen
 from PyQt6.QtWidgets import QWidget, QLabel, QVBoxLayout, QSizePolicy
 
-from animations.fadeout import FadeoutAnimation
-from themes.modern import DefaultToastTheme
+from zerolan.ui.animations.fadeout import FadeoutAnimation
+from zerolan.ui.themes.modern import DefaultToastTheme
 
 
 class QtBaseToast(QWidget, FadeoutAnimation):
